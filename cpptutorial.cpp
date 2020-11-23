@@ -35,7 +35,91 @@ void actYourAge(int& age){   // passing in a reference
     age = 39;
 }
 
+// CLASSES
 
+class Animal {
+    private:             // Variables within private can only be changed by functions within the class. This is referred to as ENCAPSULATION
+        int height;
+        string name;
+        int weight;
+
+        static int numOfAnimals;    // static means that the value will be shared by every object created in the Animal class
+
+    public:
+        int getHeight() {return height;}
+        int getWeight(){return weight;}
+        string getName(){ return name;}
+        void setHeight(int cm ){ height = cm; }
+        void setWeight(int kg ){ weight = kg; }
+        void setName(string animalName ){ name = animalName; }
+
+        // Constructor - the function that is called whenever an object needs to be created
+        Animal(int, int, string);
+
+        // Deconstructor Prototype
+        ~Animal();
+
+        // Another constructor that doesn't receive anything
+        Animal();
+
+        // static method - attached to the class, not the object. Can only access static variables within the class
+        static int getNumOfAnimals(){ return numOfAnimals; }
+
+        void toString();
+
+};
+
+int Animal::numOfAnimals = 0;   // declaring static variable
+
+// CONSTRUCTOR
+Animal::Animal(int height, int weight, string name){   // the '::'  is the scope operator
+
+    this -> height = height;
+    this -> weight = weight;
+    this -> name = name;
+    Animal::numOfAnimals++;
+}
+
+// DECONSTRUCTOR
+ Animal::~Animal(){
+
+    cout << "Animal " << this -> name << " destroyed" << endl;
+}
+
+// Overloaded constructor when no attributes are passed in
+ Animal::Animal(){
+
+    Animal::numOfAnimals++;
+}
+
+void Animal::toString(){
+
+    cout << this -> name << " is " << this -> height << " cms tall and " << this -> weight << " kgs in weight" << endl;
+}
+
+// Inheritance
+
+class Dog : public Animal {
+
+    private:
+        string sound = "Woof";
+
+    public:
+        void getSound() { cout << sound << endl; }
+        Dog(int, int, string, string);
+        Dog() : Animal(){};
+        void toString();
+
+};
+
+Dog::Dog(int height, int weight, string name, string bark) : Animal(height, weight, name) {
+
+    this -> sound = bark;
+}
+
+void Dog::toString(){
+    cout << this -> getName() << " is " << this -> getHeight() << " cms tall and " << this -> getWeight() << " kgs in weight" << this -> sound << endl;
+}
 
 
 
@@ -323,7 +407,7 @@ int main(){
 
     cout << "myAge: " << myAge1 << endl;
 
-    actYourAge(myAge1)
+    actYourAge(myAge1);
 
     cout << "myAge:" << myAge1 << endl;
 
@@ -331,15 +415,25 @@ int main(){
     
         - Use a pointer if you don't want WANT TO INITIALIZE AT DECLARATION
             - such as: int& ageRef = myAge;
-        - 
-
     */
 
 
+   Animal fred;
 
+   fred.setHeight(33);
+   fred.setWeight(10);
+   fred.setName("Fred");
 
+   cout << fred.getName() << " is " << fred.getHeight() << " cms tall and " << fred.getWeight() << " kgs in weight" << endl;
 
+   Animal tom(36, 15, "Tom");
+   
+   cout << tom.getName() << " is " << tom.getHeight() << " cms tall and " << tom.getWeight() << " kgs in weight" << endl;
 
+   Dog spot(38, 16, "Spot", "Woof");
+
+   // super class version of a method
+   spot.Animal::toString();
 
     return 0;
 }
