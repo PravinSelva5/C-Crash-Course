@@ -24,8 +24,16 @@ int getFactorial(int number){
     return sum;
 }
 
+void makeMeYoung(int* age){
 
+    cout << "I used to be " << *age << endl;
+    *age = 21;
+}
 
+void actYourAge(int& age){   // passing in a reference
+
+    age = 39;
+}
 
 
 
@@ -207,13 +215,15 @@ int main(){
     cout << yourName << endl;
 
     /*  #######################################################  */
+    // Vectors: Format vector <DataType> nameOfVector
+    // C++ vectors handle dynamic data
 
     vector <int> lotteryNumVect(10);
 
     int lotteryNumArray[5] = {4, 13, 14, 24, 34};
 
     lotteryNumVect.insert(lotteryNumVect.begin(), lotteryNumArray, lotteryNumArray+3);
-    cout << lotteryNumArray.at(2) << endl;
+    cout << lotteryNumVect.at(2) << endl;
 
     lotteryNumVect.insert(lotteryNumVect.begin()+5, 44);
     cout << lotteryNumVect.at(5) << endl;
@@ -228,7 +238,108 @@ int main(){
     cout << addNumbers(1, 5) << endl;
     cout << getFactorial(2) << endl;
 
- 
+    // Reading Files 
+
+    string steveQuote = "A day without sunshine is like, you know, night";
+
+    ofstream writer("stevequote.txt");
+
+    if ( ! writer) {
+
+        cout << "Error opening file" << endl;
+        return -1;
+    } else {
+        writer << steveQuote << endl;
+
+        writer.close();
+    }
+
+    ofstream writer2("stevequote.txt", ios::app);
+    
+    if ( ! writer2) {
+
+        cout << "Error opening file" << endl;
+        return -1;
+    } else {
+        writer2 << "\n - Steve Martin" << endl;
+
+        writer2.close();
+    }
+
+    char letter;
+
+    ifstream reader("stevequote.txt");
+
+    if (! reader){
+        cout << "Error opening file" << endl;
+        return -1;
+    } else {
+
+        for (int i = 0; ! reader.eof(); i++){
+
+            reader.get(letter);
+            cout << letter;
+        }
+
+        cout << endl;
+        reader.close();
+    }
+
+    // EXCEPTIONS OR ERROR
+
+    int number = 0;
+
+    try {
+        if (number != 0){
+            cout << 2/number << endl;
+        } else throw(number);
+    }
+    catch (int number){
+
+        cout << number << " is not valid" << endl;
+    }
+
+    // POINTERS
+    // & --> reference operator
+    // A pointer is able to store a memory address
+
+    int myAge1 = 23;
+
+    int* agePtr = &myAge1;
+
+    cout << "Address of pointer" << agePtr << endl;   // gives you the memory address of the data
+
+    cout << "Data at memory address" << *agePtr << endl;   // gives you the data at the memory address
+
+    makeMeYoung(&myAge1); // You use & to pass by reference.
+
+    cout << "I'm " << myAge1 << " years old now" << endl;
+
+    int& ageRef = myAge1;
+
+    cout << "myAge: " << myAge1 << endl;
+
+    ageRef++;
+
+    cout << "myAge: " << myAge1 << endl;
+
+    actYourAge(myAge1)
+
+    cout << "myAge:" << myAge1 << endl;
+
+    /* 
+    
+        - Use a pointer if you don't want WANT TO INITIALIZE AT DECLARATION
+            - such as: int& ageRef = myAge;
+        - 
+
+    */
+
+
+
+
+
+
 
     return 0;
 }
