@@ -22,7 +22,6 @@ int main()
     int x = 42;
     int * px = &x;
     printf("px is %d\n", *px);
-    return 0;
     
     // Reference is like a pointer but with different semantics
     // References are immmtable and once defined cannot be changed to refer to another object
@@ -32,5 +31,15 @@ int main()
     int &rx = xl;
     printf("x is %d\n", rx);
     
+    // A byte is 8 bits
+    constexpr size_t byte = 8;
+
+    printf("sizeof char is %ld bits \n", sizeof(char) * byte);
+    printf("sizeof short int is %ld bits \n", sizeof(short int) * byte);
+    printf("sizeof int is %ld bits \n", sizeof(int) * byte);
+    printf("sizeof long int is %ld bits \n", sizeof(long int) * byte);
+    printf("sizeof long long int is %ld bits \n", sizeof(long long int) * byte);
     
+    
+        return 0;
 }
