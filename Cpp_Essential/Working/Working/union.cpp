@@ -3,7 +3,6 @@
 #include <cstdint>
 using namespace std;
 
-// This data structure allows you to use the same memory space for different types
 union ipv4 {
     uint32_t i32;
     struct {

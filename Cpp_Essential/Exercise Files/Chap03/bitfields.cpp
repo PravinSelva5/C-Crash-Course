@@ -2,6 +2,7 @@
 #include <cstdio>
 using namespace std;
 
+// Shows how many bits are set aside for each value
 struct preferences {
     bool likesMusic : 1;
     bool hasHair : 1;
@@ -11,6 +12,7 @@ struct preferences {
 };
 
 int main() {
+    // Created a preferences struct named Homer and assigned value to its features
     struct preferences homer;
     homer.likesMusic = true;
     homer.hasHair = false;
@@ -27,5 +29,7 @@ int main() {
     if(homer.hasDinosaur) printf("homer has a dino\n");
     printf("homer has %d children\n", homer.numberOfChildren);
     
+    
+    // Bit fields can be an issue in concurrent or threaded programming situations because all the bits in the unit need to be read all at the same time
     return 0;
 }
