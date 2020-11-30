@@ -23,6 +23,9 @@ int main()
     func();
     func();
     func();
+    
+    // function pointers
+    
 
     puts("Hello, World!");
     return 0;

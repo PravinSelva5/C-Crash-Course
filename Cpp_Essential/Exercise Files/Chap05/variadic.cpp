@@ -1,12 +1,11 @@
 // variadic.c by Bill Weinman <http://bw.org/>
 // updated for C++EssT 2014-10-24
 #include <cstdio>
-#include <cstdarg>
+#include <cstdarg> // c standard argument
 
 // first argument is int count of remaining args
 // ... remaining args are doubles for average
-double average(const int count, ...)
-{
+double average(const int count, ...){ // the three dots tell us there will be mulitple variables
     va_list ap;
     int i;
     double total = 0.0;

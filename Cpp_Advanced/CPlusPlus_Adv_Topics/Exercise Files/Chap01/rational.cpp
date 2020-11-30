@@ -1,5 +1,5 @@
 // rational.cpp by Bill Weinman <http://bw.org/>
-// updated 2018-10-29
+// updated 2018-10-03 for CppAdv
 #include <cstdio>
 #include <iostream>
 using namespace std;
@@ -11,8 +11,8 @@ public:
     Rational ( int numerator = 0, int denominator = 1 ) : _n(numerator), _d(denominator) {};
     Rational ( const Rational & rhs ) : _n(rhs._n), _d(rhs._d) {};    // copy constructor
     ~Rational ();
-    inline int numerator() const { return _n; };
-    inline int denominator() const { return _d; };
+    int numerator() const { return _n; };
+    int denominator() const { return _d; };
     Rational & operator = ( const Rational & );
     Rational operator + ( const Rational & ) const;
     Rational operator - ( const Rational & ) const;
@@ -20,16 +20,12 @@ public:
     Rational operator / ( const Rational & ) const;
 };
 
-Rational::~Rational() {
-    _n = 0; _d = 1;
-}
-
 Rational & Rational::operator = ( const Rational & rhs ) {
     if( this != &rhs ) {
         _n = rhs.numerator();
         _d = rhs.denominator();
     }
-    return *this;  // this keyword forms a pointer that points to the object it is in.
+    return *this;
 }
 
 Rational Rational::operator + ( const Rational & rhs ) const {
@@ -48,7 +44,11 @@ Rational Rational::operator / ( const Rational & rhs ) const {
     return Rational(_n * rhs._d, _d * rhs._n);
 }
 
-// useful for std::cout
+Rational::~Rational() {
+    _n = 0; _d = 1;
+}
+
+// for std::cout
 std::ostream & operator << (std::ostream & o, const Rational & r) {
     if(r.denominator() == 1) return o << r.numerator();
     else return o << r.numerator() << '/' << r.denominator();
@@ -66,6 +66,9 @@ int main() {
     cout << "d is: " << d << endl;
     d = c;                // assignment operator
     cout << "d is: " << d << endl;
+    Rational & e = d;    // reference
+    d = e;                // assignment to self!
+    cout << "e is: " << e << endl;
     
     cout << a << " + " << b << " = " << a + b << endl;
     cout << a << " - " << b << " = " << a - b << endl;

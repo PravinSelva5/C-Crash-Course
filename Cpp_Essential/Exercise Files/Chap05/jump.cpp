@@ -14,6 +14,7 @@ void fc() { puts("this is fc()"); }
 void fd() { puts("this is fd()"); }
 void fe() { puts("this is fe()"); }
 
+// This is an array of function pointers
 void (*funcs[])() = { fa, fb, fc, fd, fe };
 
 int main() {

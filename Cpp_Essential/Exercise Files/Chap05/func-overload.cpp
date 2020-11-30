@@ -28,3 +28,6 @@ int main() {
     printf("volume of a 2 x 3 x 4 cuboid: %.3lf\n", volume(2.0, 3.0, 4.0));
     return 0;
 }
+
+
+// In C++, a function is defined by its signatures, so its possible to have functions with the same name but with different parameters and return type
