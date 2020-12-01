@@ -8,8 +8,16 @@ class c1 {
     int i = 0;
 public:
     void setvalue( const int & value ) { i = value; }
-    int getvalue() const { return i; }
+    int getvalue() const;
 };
+
+
+int c1::getvalue() const {
+    printf("getvalue: this is %p\n", this); // this pointer is typically used for members of a called object
+    
+    return i;
+    
+}
 
 int main() {
     const int i = 47;

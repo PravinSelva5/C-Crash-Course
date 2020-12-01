@@ -4,6 +4,9 @@
 #include <iostream>
 using namespace std;
 
+// RULE OF THUMB
+// If you have a constructor that allows implicit conversion. You should consider non-member operators for all of them or as many of which make sense
+
 class Rational {
     int _n = 0;
     int _d = 1;

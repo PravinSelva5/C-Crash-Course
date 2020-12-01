@@ -4,6 +4,11 @@
 #include <string>
 using namespace std;
 
+
+// Use the friend declaration for functions to access private variables but you need to make sure you abide by encapsulation
+// It's always better to use an accessor in the class interface
+
+
 // Base class
 class Animal {
     string _name;

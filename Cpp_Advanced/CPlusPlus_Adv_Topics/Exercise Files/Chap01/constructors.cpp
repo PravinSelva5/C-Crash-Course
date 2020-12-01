@@ -7,6 +7,8 @@ using namespace std;
 const string unk = "unknown";
 const string clone_prefix = "clone-";
 
+// RULE OF THREE --> C++ provides implicit constructors for the copy constructor, destructor, and the copy operator. IF you need to build your own methods for any one of these, it is better to build all three based off your class' needs
+
 // -- interface --
 class Animal {
     string _type = "";
@@ -23,7 +25,7 @@ public:
 };
 
 // -- implementation --
-Animal::Animal() : _type(unk), _name(unk), _sound(unk) {
+Animal::Animal() : _type(unk), _name(unk), _sound(unk) {     // the colon is a special list operator that is used in classes with defining the constructor. You list all the data members you want initialized and then also assign the values
     puts("default constructor");
 }
 
